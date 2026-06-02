@@ -3,6 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
 import numpy as np
 import time
+import os
 import quantum_estimation
 # 引入量子估计函数
 from quantum_estimation import run_quantum_estimation 
@@ -12,6 +13,10 @@ from quantum_estimation import run_projection_measurement, run_lc_input_measurem
 from quantum_estimation import run_state_optimization
 
 app = FastAPI()
+
+# 自动创建必要文件夹
+os.makedirs("./Img", exist_ok=True)
+os.makedirs("./Doc", exist_ok=True)
 
 # 挂载静态文件 (保持不变)
 app.mount("/Img", StaticFiles(directory="./Img"), name="Img")
